@@ -1,0 +1,53 @@
+.header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+
+.item {
+    text-align: center;
+    width: 10rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: table-cell;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-family: 'Malgun Gothic';
+    color: black;
+}
+
+.item:hover, .item.active {
+    color: #35C5F0;
+}
+
+.card {
+    display: inline-block;
+    width: 20rem;
+    height: 20rem;
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.cardImg {
+    position: absolute;
+    top: auto; left: 0; right: 0; bottom: auto; max-width: 100%; height: auto;
+}
+
+.type {
+    position: absolute;
+    bottom: 5px;
+    left: 8px;
+    font-family: 'Malgun Gothic';
+    background: rgba(50, 50, 50, 0.5);
+    color: white;
+    padding: 5px;
+    font-size: small;
+    border-radius: 3px;
+}
+
+.icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 5px;
+}
