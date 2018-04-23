@@ -97,3 +97,19 @@
     background: rgba(30, 30, 30, 0.8);
     z-index: 9;
 }
+
+.toastBody {
+    color: gray;
+    text-align: center;
+}
+
+.undo {
+    color: #35C5F0;
+    display: inline;
+    margin-left: 2rem;
+    padding: 5px;
+}
+
+.undo:hover {
+    background: rgb(230, 230, 230);
+}

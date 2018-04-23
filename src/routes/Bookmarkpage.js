@@ -39,7 +39,7 @@ class Bookmarkpage extends Component {
                         type={this.types[cell.get('type')]} 
                         marked={findId(cell.get('id'))}
                         addBookmark={()=>{addBookmark(cell)}}
-                        delBookmark={()=>{delBookmark(cell.get('id'))}}/>
+                        delBookmark={()=>{delBookmark(cell)}}/>
                 );
             }
         })

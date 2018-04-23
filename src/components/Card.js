@@ -42,9 +42,15 @@ class Card extends Component {
                         'https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-b.svg' :
                         'https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-w.svg'} 
                     className='icon'
-                    onClick={this.props.marked ? 
-                        this.props.delBookmark :
-                        this.props.addBookmark}/>
+                    onClick={()=>{
+                        if (this.props.marked) {
+                            this.props.delBookmark();
+                        }
+                        else {
+                            this.props.addBookmark();
+                        }
+                            
+                    }}/>
             </div>
         )
     }
