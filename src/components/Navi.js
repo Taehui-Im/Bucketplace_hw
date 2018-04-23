@@ -64,10 +64,11 @@ class Navi extends Component {
 
         return (
             <div>
-                <div className='header'>
+                <div className='navi'>
                     {Object.keys(this.types).map(
                         type => (
-                        <a type={type} 
+                        <a type={type}
+                            href='#top'
                             className={this.state.type == type ? 'item active' : 'item'} 
                             onClick={()=>this.chooseType(type)}>
                             {this.types[type]}

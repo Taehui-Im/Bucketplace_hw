@@ -5,7 +5,7 @@ import './Common.css'
 const Header = () => {
     return (
         <div className='header'>
-            <NavLink exact to='/' className='item' activeClassName='active'>홈</NavLink>
+            <NavLink exact to='/' className='item' activeClassName='active'>전체보기</NavLink>
             <NavLink to='/book-mark' className='item' activeClassName='active'>북마크</NavLink>
         </div>
     );

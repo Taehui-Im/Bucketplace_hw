@@ -1,12 +1,42 @@
+/* global history */
+/* global location */
+/* eslint no-restricted-globals: ["off"] */
+
 import React, { Component } from 'react';
 import { Map, List, fromJS } from 'immutable';
 import './Common.css'
+import Modal from './Modal'
 
 class Card extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modal: false
+        }
+    }
+
+    toggle = (t) => {
+        this.setState({
+            modal: t
+        })
+    }
+
+    backButtonHandler = () => {
+        history.pushState(null, document.title, location.href); 
+        this.toggle(false);
+        window.removeEventListener('popstate', this.backButtonHandler);
+    }
+
     render() {
         return (
             <div className='card'>
-                <img src={this.props.src} className='cardImg'/>
+                <Modal show={this.state.modal} src={this.props.src} toggle={this.toggle} backButtonHandler={this.backButtonHandler}/>
+                <img src={this.props.src} className='cardImg' 
+                    onClick={()=>{
+                        this.toggle(true)
+                        history.pushState(null, document.title, location.href); 
+                        window.addEventListener('popstate', this.backButtonHandler);
+                    }}/>
                 <p className='type'>{this.props.type}</p>
                 <img src='https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-w.svg' className='icon'/>
             </div>
