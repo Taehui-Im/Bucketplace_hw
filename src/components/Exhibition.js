@@ -7,7 +7,7 @@ import { Map, List, fromJS } from 'immutable';
 import './Common.css'
 import Modal from './Modal'
 
-class Card extends Component {
+class Exhibition extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,10 +28,11 @@ class Card extends Component {
     }
 
     render() {
+        const { data } = this.props;
         return (
-            <div className='card'>
-                <Modal show={this.state.modal} src={this.props.src} toggle={this.toggle} backButtonHandler={this.backButtonHandler}/>
-                <img src={this.props.src} className='cardImg' 
+            <div className='card-with-info'>
+                <Modal show={this.state.modal} src={data.get('image_url')} toggle={this.toggle} backButtonHandler={this.backButtonHandler}/>
+                <img src={data.get('image_url')} className='cardImg' 
                     onClick={()=>{
                         this.toggle(true)
                         history.pushState(null, document.title, location.href); 
@@ -50,9 +51,13 @@ class Card extends Component {
                         }
                             
                     }}/>
+                <ul className='info'>
+                    <li className='brand'>{data.get('sub_title')}</li>
+                    <p>{data.get('title')}</p>
+                </ul>
             </div>
         )
     }
 }
 
-export default Card;
+export default Exhibition;

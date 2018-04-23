@@ -1,6 +1,6 @@
 .header {
     width: 100%;
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid rgb(220, 220, 220);
     position: fixed;
     z-index: 2;
     background: white;
@@ -8,21 +8,26 @@
 
 .navi {
     position: fixed;
+    display: flex;
+    justify-content: center;
     top: 3.3rem;
     width: 100%;
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid rgb(220, 220, 238);
     z-index: 1;
     background: white;
 }
 
 .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     position: relative;
     top: 9rem;
 }
 
 .item {
     text-align: center;
-    width: 10rem;
+    width: 6rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: table-cell;
@@ -43,17 +48,28 @@
 }
 
 .card {
-    display: inline-block;
+    display: inline-flex;
+    position: relative;
     width: 20rem;
     height: 20rem;
     margin: 1rem;
+}
+
+.card-with-info {
+    display: inline-flex;
     position: relative;
-    overflow: hidden;
+    width: 20rem;
+    height: 27rem;
+    margin: 1rem;
 }
 
 .cardImg {
     position: absolute;
     top: auto; left: 0; right: 0; bottom: auto; max-width: 100%; height: auto;
+}
+
+.cardImg:hover {
+    opacity: 0.5;
 }
 
 .type {
@@ -70,7 +86,7 @@
 
 .icon {
     position: absolute;
-    bottom: 5px;
+    top: 16.5rem;
     right: 5px;
     padding: 5px;
 }
@@ -113,3 +129,38 @@
 .undo:hover {
     background: rgb(230, 230, 230);
 }
+
+.info {
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+}
+
+.brand {
+    color: rgb(150, 150, 150);
+    font-size: small;
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.name {
+    font-size: small;
+    list-style: none;
+    margin-bottom: 8px;
+}
+
+.selling_cost {
+    font-size: medium;
+    list-style: none;
+}
+
+.cost {
+    font-size: small;
+    color: rgb(190, 190, 190);
+}
+
+.rate {
+    font-size: large;
+    color: #35C5F0;
+}
+

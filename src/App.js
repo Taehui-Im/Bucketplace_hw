@@ -59,13 +59,14 @@ render() {
     return (
     <Router>
         <div>
+        
+        <Header/>
         <ToastContainer 
                     position='top-center'
                     autoClose={5000}
                     pauseOnHover
                     hideProgressBar={true}
                     closeButton={false}/>
-        <Header/>
         <Route exact path='/' render={(props) => 
             <Indexpage {...props} findId={this.findId} addBookmark={this.addBookmark} delBookmark={this.delBookmark}/>} />
         <Route path='/book-mark' render={(props) => 

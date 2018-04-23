@@ -7,7 +7,7 @@ import { Map, List, fromJS } from 'immutable';
 import './Common.css'
 import Modal from './Modal'
 
-class Card extends Component {
+class All extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,6 +37,7 @@ class Card extends Component {
                         history.pushState(null, document.title, location.href); 
                         window.addEventListener('popstate', this.backButtonHandler);
                     }}/>
+                <p className='type'>{this.props.type}</p>
                 <img src={this.props.marked ? 
                         'https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-b.svg' :
                         'https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-w.svg'} 
@@ -55,4 +56,4 @@ class Card extends Component {
     }
 }
 
-export default Card;
+export default All;

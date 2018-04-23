@@ -7,7 +7,7 @@ import { Map, List, fromJS } from 'immutable';
 import './Common.css'
 import Modal from './Modal'
 
-class Card extends Component {
+class Production extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,22 +27,29 @@ class Card extends Component {
         window.removeEventListener('popstate', this.backButtonHandler);
     }
 
+    numberWithCommas = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     render() {
+        const { data, marked } = this.props;
+
+        const rate = Math.round((Number(data.get('cost')) - Number(data.get('selling_cost')))/Number(data.get('cost'))*100);
         return (
-            <div className='card'>
-                <Modal show={this.state.modal} src={this.props.src} toggle={this.toggle} backButtonHandler={this.backButtonHandler}/>
-                <img src={this.props.src} className='cardImg' 
+            <div className='card-with-info'>
+                <Modal show={this.state.modal} src={data.get('image_url')} toggle={this.toggle} backButtonHandler={this.backButtonHandler}/>
+                <img src={data.get('image_url')} className='cardImg' 
                     onClick={()=>{
                         this.toggle(true)
                         history.pushState(null, document.title, location.href); 
                         window.addEventListener('popstate', this.backButtonHandler);
                     }}/>
-                <img src={this.props.marked ? 
+                <img src={marked ? 
                         'https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-b.svg' :
                         'https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-w.svg'} 
                     className='icon'
                     onClick={()=>{
-                        if (this.props.marked) {
+                        if (marked) {
                             this.props.delBookmark();
                         }
                         else {
@@ -50,9 +57,18 @@ class Card extends Component {
                         }
                             
                     }}/>
+                <ul className='info'>
+                    <li className='brand'>{data.get('brand_name')}</li>
+                    <li className='name'>{data.get('name')}</li>
+                    <li className='selling_cost'>
+                        <span className='rate'>{rate + '%  '}</span>
+                        {this.numberWithCommas(data.get('selling_cost')) + '원  '}
+                        <del className='cost'>{this.numberWithCommas(data.get('cost'))}</del>
+                    </li>
+                </ul>
             </div>
         )
     }
 }
 
-export default Card;
+export default Production;
