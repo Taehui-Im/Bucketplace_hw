@@ -1,14 +1,92 @@
-import React from 'react';
+import React, { Component } from 'react';
+import '../components/Common.css'
+import * as api from '../lib/api';
+import { List, fromJS } from 'immutable';
+import InfiniteScroll from 'react-infinite-scroller';
+import Card from '../components/Card'
 
-import Navi from '../components/Navi';
-import '../components/Common.css';
+class Indexpage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            type: 'All',
+            data: List(),
+            hasMore: true
+        }
+    }
 
-const Indexpage = () => {
-    return (
-        <div>
-            <Navi/>
-        </div>
-    );
+    types = {
+        'All': '모두',
+        'Card': '사진',
+        'Production': '제품',
+        'Project': '집들이',
+        'Exhibition': '기획전'
+    }
+
+    chooseType = (type) => {
+        this.setState({
+            type: type
+        })
+    }
+
+    getPage = (page) => {
+        api.getPage(page).then((response) => {
+            this.setState({
+                data: this.state.data.concat(fromJS(response.data))
+            })
+            
+            if (response.data.length == 0) {
+                this.setState({
+                    hasMore: false
+                })
+            }
+        });
+    }
+
+    render() {
+        const loader = <div className="loader">Loading ...</div>;
+        const { type, data, hasMore } = this.state;
+        const { findId, addBookmark, delBookmark } = this.props;
+
+        var items = [];
+
+        data.map((cell) => {
+            if (type === 'All' || type === cell.get('type')) {
+                items.push(
+                    <Card 
+                        src={cell.get('image_url')} 
+                        type={this.types[cell.get('type')]} 
+                        marked={findId(cell.get('id'))}
+                        addBookmark={()=>{addBookmark(cell)}}
+                        delBookmark={()=>{delBookmark(cell.get('id'))}}/>
+                );
+            }
+        })
+
+        return (
+            <div>
+                <div className='navi'>
+                    {Object.keys(this.types).map(
+                        t => (
+                        <a type={t}
+                            href='#top'
+                            className={t == type ? 'item active' : 'item'} 
+                            onClick={()=>this.chooseType(t)}>
+                            {this.types[t]}
+                        </a>)
+                    )}
+                </div>
+                <InfiniteScroll
+                    className='container'
+                    pageStart={0}
+                    loadMore={this.getPage.bind(this)}
+                    loader={loader}
+                    hasMore={hasMore}>
+                    {items}
+                </InfiniteScroll>
+            </div>
+        );
+    }
 };
 
 export default Indexpage;

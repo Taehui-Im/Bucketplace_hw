@@ -38,7 +38,13 @@ class Card extends Component {
                         window.addEventListener('popstate', this.backButtonHandler);
                     }}/>
                 <p className='type'>{this.props.type}</p>
-                <img src='https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-w.svg' className='icon'/>
+                <img src={this.props.marked ? 
+                        'https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-b.svg' :
+                        'https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/res/action-scrap-circle-w.svg'} 
+                    className='icon'
+                    onClick={this.props.marked ? 
+                        this.props.delBookmark :
+                        this.props.addBookmark}/>
             </div>
         )
     }
