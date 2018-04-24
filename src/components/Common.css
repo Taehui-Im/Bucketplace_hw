@@ -53,6 +53,7 @@
     width: 20rem;
     height: 20rem;
     margin: 1rem;
+    overflow: hidden;
 }
 
 .card-with-info {
@@ -61,11 +62,12 @@
     width: 20rem;
     height: 27rem;
     margin: 1rem;
+    overflow: hidden;
 }
 
 .cardImg {
     position: absolute;
-    top: auto; left: 0; right: 0; bottom: auto; max-width: 100%; height: auto;
+    top: auto; left: 0; right: 0; bottom: auto; max-height: 20rem; width: auto;
 }
 
 .cardImg:hover {
@@ -132,7 +134,7 @@
 
 .info {
     position: absolute;
-    bottom: 0;
+    top: 20rem;
     padding: 5px;
 }
 
