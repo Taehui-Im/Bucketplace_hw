@@ -35,6 +35,7 @@
     font-size: 1.1rem;
     font-family: 'Malgun Gothic';
     color: black;
+    font-weight: bold;
 }
 
 .item.active {
